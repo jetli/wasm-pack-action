@@ -1,10 +1,10 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'cargo-wasm-pack'
+description: 'Install `wasm-pack` by downloading the executable (faster than `cargo install wasm-pack`, seconds vs minutes).'
+author: 'jetli'
 inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+  version:
+    description: 'Version of wasm-pack to install (eg. "0.9.1", "latest")'
+    default: 'latest'
 runs:
   using: 'node12'
   main: 'dist/index.js'
