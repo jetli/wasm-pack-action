@@ -1339,7 +1339,7 @@ function run() {
         }
     });
 }
-run();
+run().then(() => core.info('Done'), err => core.error(err));
 
 
 /***/ }),
