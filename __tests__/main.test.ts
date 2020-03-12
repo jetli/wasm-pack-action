@@ -14,6 +14,7 @@ test('test runs with a fixed version 0.9.1', () => {
   console.log(cp.execSync(`node ${ip}`, options).toString())
 })
 
+/*
 test('test runs with the latest version ', () => {
   process.env['RUNNER_TEMP'] = os.tmpdir()
   process.env['INPUT_VERSION'] = 'latest'
@@ -32,3 +33,4 @@ test('test runs without version defined', () => {
   }
   console.log(cp.execSync(`node ${ip}`, options).toString())
 })
+*/
