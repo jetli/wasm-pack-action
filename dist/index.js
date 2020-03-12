@@ -1297,10 +1297,9 @@ function run() {
             core.info(`Installing wasm-pack ${version} ...`);
             const platform = process.env['PLATFORM'] || process.platform;
             core.debug(platform);
-            const execFolder = path.join(os.homedir(), '.cargo', 'bin');
-            yield io.mkdirP(execFolder);
             let ext = '';
             let arch = '';
+            let archTopFolder = '';
             switch (platform) {
                 case 'win32':
                     ext = '.exe';
@@ -1308,26 +1307,29 @@ function run() {
                     break;
                 case 'darwin':
                     arch = 'x86_64-apple-darwin';
+                    archTopFolder = `wasm-pack-v${version}-${arch}`;
                     break;
                 case 'linux':
                     arch = 'x86_64-unknown-linux-musl';
+                    archTopFolder = `wasm-pack-v${version}-${arch}`;
                     break;
                 default:
                     core.setFailed(`Unsupported platform: ${platform}`);
                     return;
             }
-            const archive = `wasm-pack-v${version}-${arch}.tar.gz`;
-            const url = `https://github.com/rustwasm/wasm-pack/releases/download/v${version}/${archive}`;
+            const archive = `wasm-pack-v${version}-${arch}`;
+            const url = `https://github.com/rustwasm/wasm-pack/releases/download/v${version}/${archive}.tar.gz`;
             core.info(`Downloading wasm-pack from ${url} ...`);
             const downloadArchive = yield tc.downloadTool(url);
             core.info(`Extracting wasm-pack to ${tempFolder} ...`);
             const extractedFolder = yield tc.extractTar(downloadArchive, tempFolder);
+            const execFolder = path.join(os.homedir(), '.cargo', 'bin');
+            yield io.mkdirP(execFolder);
             const exec = `wasm-pack${ext}`;
             const execPath = path.join(execFolder, exec);
-            core.info(`Moving wasm-pack from ${extractedFolder} to ${execPath}`);
-            yield io.mv(path.join(extractedFolder, exec), execPath);
+            yield io.mv(path.join(extractedFolder, archTopFolder, exec), execPath);
             yield io.rmRF(path.join(extractedFolder, archive));
-            core.info(`Installed: ${execPath}`);
+            core.info(`Installed wasm-pack to ${execPath} 🎉`);
         }
         catch (error) {
             core.setFailed(error.message);

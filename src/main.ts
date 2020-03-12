@@ -36,6 +36,7 @@ async function run(): Promise<void> {
 
     let ext = ''
     let arch = ''
+    let archTopFolder = ''
     switch (platform) {
       case 'win32':
         ext = '.exe'
@@ -43,16 +44,18 @@ async function run(): Promise<void> {
         break
       case 'darwin':
         arch = 'x86_64-apple-darwin'
+        archTopFolder = `wasm-pack-v${version}-${arch}`
         break
       case 'linux':
         arch = 'x86_64-unknown-linux-musl'
+        archTopFolder = `wasm-pack-v${version}-${arch}`
         break
       default:
         core.setFailed(`Unsupported platform: ${platform}`)
         return
     }
-    const archive = `wasm-pack-v${version}-${arch}.tar.gz`
-    const url = `https://github.com/rustwasm/wasm-pack/releases/download/v${version}/${archive}`
+    const archive = `wasm-pack-v${version}-${arch}`
+    const url = `https://github.com/rustwasm/wasm-pack/releases/download/v${version}/${archive}.tar.gz`
     core.info(`Downloading wasm-pack from ${url} ...`)
     const downloadArchive = await tc.downloadTool(url)
     core.info(`Extracting wasm-pack to ${tempFolder} ...`)
@@ -61,10 +64,9 @@ async function run(): Promise<void> {
     await io.mkdirP(execFolder)
     const exec = `wasm-pack${ext}`
     const execPath = path.join(execFolder, exec)
-    core.info(`Moving wasm-pack from ${extractedFolder} to ${execPath}`)
-    await io.mv(path.join(extractedFolder, exec), execPath)
-    //await io.rmRF(path.join(extractedFolder, archive))
-    core.info(`Installed: ${execPath}`)
+    await io.mv(path.join(extractedFolder, archTopFolder, exec), execPath)
+    await io.rmRF(path.join(extractedFolder, archive))
+    core.info(`Installed wasm-pack to ${execPath} 🎉`)
   } catch (error) {
     core.setFailed(error.message)
   } finally {
