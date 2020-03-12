@@ -34,9 +34,6 @@ async function run(): Promise<void> {
     const platform = process.env['PLATFORM'] || process.platform
     core.debug(platform)
 
-    const execFolder = path.join(os.homedir(), '.cargo', 'bin')
-    await io.mkdirP(execFolder)
-
     let ext = ''
     let arch = ''
     switch (platform) {
@@ -60,11 +57,13 @@ async function run(): Promise<void> {
     const downloadArchive = await tc.downloadTool(url)
     core.info(`Extracting wasm-pack to ${tempFolder} ...`)
     const extractedFolder = await tc.extractTar(downloadArchive, tempFolder)
+    const execFolder = path.join(os.homedir(), '.cargo', 'bin')
+    await io.mkdirP(execFolder)
     const exec = `wasm-pack${ext}`
     const execPath = path.join(execFolder, exec)
     core.info(`Moving wasm-pack from ${extractedFolder} to ${execPath}`)
     await io.mv(path.join(extractedFolder, exec), execPath)
-    await io.rmRF(path.join(extractedFolder, archive))
+    //await io.rmRF(path.join(extractedFolder, archive))
     core.info(`Installed: ${execPath}`)
   } catch (error) {
     core.setFailed(error.message)
