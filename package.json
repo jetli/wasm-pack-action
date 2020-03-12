@@ -2,7 +2,7 @@
   "name": "wasm-pack-action",
   "version": "0.1.0",
   "private": true,
-  "description": "wasm-pack action",
+  "description": "wasm-pack action to install wasm-pack by downloading the executable",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",

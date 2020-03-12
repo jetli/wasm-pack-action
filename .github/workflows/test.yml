@@ -20,4 +20,4 @@ jobs:
     - uses: actions/checkout@v1
     - uses: ./
       with: 
-        milliseconds: 1000
+        version: 0.9.1
