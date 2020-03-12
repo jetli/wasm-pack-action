@@ -1,8 +1,8 @@
 {
-  "name": "typescript-action",
-  "version": "0.0.0",
+  "name": "wasm-pack-action",
+  "version": "0.1.0",
   "private": true,
-  "description": "TypeScript template action",
+  "description": "wasm-pack action",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -15,14 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/jetli/wasm-pack-action.git"
   },
   "keywords": [
     "actions",
     "node",
-    "setup"
+    "setup",
+    "wasm-pack"
   ],
-  "author": "YourNameOrOrganization",
+  "author": "Jet Li",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.2.0"
