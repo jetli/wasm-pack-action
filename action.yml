@@ -1,4 +1,4 @@
-name: 'cargo-wasm-pack'
+name: 'wasm-pack'
 description: 'Install `wasm-pack` by downloading the executable (faster than `cargo install wasm-pack`, seconds vs minutes).'
 author: 'jetli'
 inputs:
