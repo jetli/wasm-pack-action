@@ -6,6 +6,9 @@
 
 Install `wasm-pack` by downloading the executable (faster than `cargo install wasm-pack`, seconds vs minutes).
 
+## Resources
+- https://github.com/davidB/rust-cargo-make
+
 ## Create an action from this template
 
 Click the `Use this Template` and provide the new repo details for your action
