@@ -56,10 +56,13 @@ async function run(): Promise<void> {
     }
     const archive = `wasm-pack-v${version}-${arch}.tar.gz`
     const url = `https://github.com/rustwasm/wasm-pack/releases/download/v${version}/${archive}`
+    core.info(`Downloading wasm-pack from ${url} ...`)
     const downloadArchive = await tc.downloadTool(url)
+    core.info(`Extracting wasm-pack to ${tempFolder} ...`)
     const extractedFolder = await tc.extractTar(downloadArchive, tempFolder)
     const exec = `wasm-pack${ext}`
     const execPath = path.join(execFolder, exec)
+    core.info(`Moving wasm-pack from ${extractedFolder} to ${execPath}`)
     await io.mv(path.join(extractedFolder, exec), execPath)
     await io.rmRF(path.join(extractedFolder, archive))
     core.info(`Installed: ${execPath}`)
