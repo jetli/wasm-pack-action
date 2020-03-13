@@ -4,7 +4,7 @@
 
 # `wasm-pack-action`
 
-Install `wasm-pack` by downloading the executable (faster than `cargo install wasm-pack`, seconds vs minutes).
+Install `wasm-pack` by downloading the executable (much faster than `cargo install wasm-pack`, seconds vs minutes).
 
 ## Usage
 

@@ -1,5 +1,5 @@
 name: 'wasm-pack-action'
-description: 'Install `wasm-pack` by downloading the executable (faster than `cargo install wasm-pack`, seconds vs minutes).'
+description: 'Install `wasm-pack` by downloading the executable (much faster than `cargo install wasm-pack`, seconds vs minutes).'
 author: 'jetli'
 inputs:
   version:
