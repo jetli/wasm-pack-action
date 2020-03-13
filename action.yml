@@ -1,9 +1,9 @@
-name: 'wasm-pack'
+name: 'wasm-pack-action'
 description: 'Install `wasm-pack` by downloading the executable (faster than `cargo install wasm-pack`, seconds vs minutes).'
 author: 'jetli'
 inputs:
   version:
-    description: 'Version of wasm-pack to install (eg. "0.9.1", "latest")'
+    description: 'Optional version of wasm-pack to install (eg. "0.9.1", "latest")'
     default: 'latest'
 runs:
   using: 'node12'
