@@ -4,9 +4,9 @@ import * as path from 'path'
 import * as os from 'os'
 
 // shows how the runner will run a javascript action with env / stdout protocol
-test('test runs with a fixed version 0.9.1', () => {
+test('test runs with a fixed version v0.9.1', () => {
   process.env['RUNNER_TEMP'] = os.tmpdir()
-  process.env['INPUT_VERSION'] = '0.9.1'
+  process.env['INPUT_VERSION'] = 'v0.9.1'
   const ip = path.join(__dirname, '..', 'lib', 'main.js')
   const options: cp.ExecSyncOptions = {
     env: process.env

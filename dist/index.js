@@ -1276,7 +1276,7 @@ function findVersionLatest() {
         core.info('Searching the latest version of wasm-pack ...');
         const response = yield c.get('https://api.github.com/repos/rustwasm/wasm-pack/releases/latest');
         const body = yield response.readBody();
-        return Promise.resolve(JSON.parse(body).tag_name || '0.9.1');
+        return Promise.resolve(JSON.parse(body).tag_name || 'v0.9.1');
     });
 }
 function findVersion() {
@@ -1307,18 +1307,18 @@ function run() {
                     break;
                 case 'darwin':
                     arch = 'x86_64-apple-darwin';
-                    archTopFolder = `wasm-pack-v${version}-${arch}`;
+                    archTopFolder = `wasm-pack-${version}-${arch}`;
                     break;
                 case 'linux':
                     arch = 'x86_64-unknown-linux-musl';
-                    archTopFolder = `wasm-pack-v${version}-${arch}`;
+                    archTopFolder = `wasm-pack-${version}-${arch}`;
                     break;
                 default:
                     core.setFailed(`Unsupported platform: ${platform}`);
                     return;
             }
-            const archive = `wasm-pack-v${version}-${arch}`;
-            const url = `https://github.com/rustwasm/wasm-pack/releases/download/v${version}/${archive}.tar.gz`;
+            const archive = `wasm-pack-${version}-${arch}`;
+            const url = `https://github.com/rustwasm/wasm-pack/releases/download/${version}/${archive}.tar.gz`;
             core.info(`Downloading wasm-pack from ${url} ...`);
             const downloadArchive = yield tc.downloadTool(url);
             core.info(`Extracting wasm-pack to ${tempFolder} ...`);
