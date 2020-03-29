@@ -15,5 +15,8 @@ Install `wasm-pack` by downloading the executable (much faster than `cargo insta
     version: 'latest'
 ```
 
+## Alternatives
+- https://rustwasm.github.io/docs/wasm-bindgen/wasm-bindgen-test/continuous-integration.html#github-actions
+
 ## Resources
 - https://github.com/rustwasm/wasm-pack
