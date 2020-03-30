@@ -15,7 +15,10 @@ jobs:
         npm install
         npm run all
   test: # make sure the action works on a clean machine without building
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        runs-on: [macOS-latest, ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.runs-on }}
     steps:
     - uses: actions/checkout@v1
     - uses: ./
