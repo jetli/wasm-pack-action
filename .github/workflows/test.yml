@@ -24,4 +24,5 @@ jobs:
     - uses: ./
       with: 
         version: v0.9.1
-    - run: wasm-pack --version
+    - run: |
+        wasm-pack --version
