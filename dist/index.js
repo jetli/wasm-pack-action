@@ -1299,7 +1299,6 @@ function run() {
             core.debug(platform);
             let ext = '';
             let arch = '';
-            let archTopFolder = '';
             switch (platform) {
                 case 'win32':
                     ext = '.exe';
@@ -1307,11 +1306,9 @@ function run() {
                     break;
                 case 'darwin':
                     arch = 'x86_64-apple-darwin';
-                    archTopFolder = `wasm-pack-${version}-${arch}`;
                     break;
                 case 'linux':
                     arch = 'x86_64-unknown-linux-musl';
-                    archTopFolder = `wasm-pack-${version}-${arch}`;
                     break;
                 default:
                     core.setFailed(`Unsupported platform: ${platform}`);
@@ -1327,7 +1324,7 @@ function run() {
             yield io.mkdirP(execFolder);
             const exec = `wasm-pack${ext}`;
             const execPath = path.join(execFolder, exec);
-            yield io.mv(path.join(extractedFolder, archTopFolder, exec), execPath);
+            yield io.mv(path.join(extractedFolder, archive, exec), execPath);
             yield io.rmRF(path.join(extractedFolder, archive));
             core.info(`Installed wasm-pack to ${execPath} 🎉`);
         }
