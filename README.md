@@ -9,7 +9,7 @@ Install `wasm-pack` by downloading the executable (much faster than `cargo insta
 ## Usage
 
 ```yaml
-- uses: jetli/wasm-pack-action@v0.3.0
+- uses: jetli/wasm-pack-action@v0.4.0
   with:
     # Optional version of wasm-pack to install(eg. 'v0.9.1', 'latest')
     version: 'latest'
